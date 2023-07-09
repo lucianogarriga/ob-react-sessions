@@ -18,9 +18,12 @@ const Element = () => {
   const onMouseLeaveHandler = () => {
     clearInterval(intervalRef.current);
   };
+  const onDoubleClickHandler = () => {
+    clearInterval(intervalRef.current);
+  }
 
-  useEffect(() => { 
-    return clearInterval(intervalRef.current);;
+  useEffect(() => {  
+    return clearInterval(intervalRef.current); 
   }, []);
 
   const squareStyle = {
@@ -33,8 +36,9 @@ const Element = () => {
       style={squareStyle}
       onMouseEnter={onMouseEnterHandler}
       onMouseLeave={onMouseLeaveHandler}
+      onDoubleClick={onDoubleClickHandler}
     >
-      <h2>Elementos sesion 10,11,12</h2>
+      <h2 >Elementos sesion 10,11,12</h2>
     </div>
   );
 };
