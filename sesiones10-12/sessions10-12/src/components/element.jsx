@@ -1,46 +1,47 @@
 import React, { useState, useEffect, useRef } from "react";
 
 const Element = () => {
-  const [color, setColor] = useState("black"); 
+  
+  // State and setState function w/ initialValue "black"
+  const [color, setColor] = useState("black")
   const intervalRef = useRef(null)
- 
+  // Variable with bg color => state component (black)
+  const squareStyle = {
+    backgroundColor: color
+  }
+
+  // Function to generate random colors
   const generateRandomColor = () => {
     const red = Math.floor(Math.random() * 256);
     const green = Math.floor(Math.random() * 256);
     const blue = Math.floor(Math.random() * 256);
-    const rgbColor = `rgb(${red},${green},${blue})`;
-    setColor(rgbColor);
-  };
-
-  const onMouseEnterHandler = () => {
-    intervalRef.current = setInterval(generateRandomColor, 500);
-  };
-  const onMouseLeaveHandler = () => {
-    clearInterval(intervalRef.current);
-  };
-  const onDoubleClickHandler = () => {
-    clearInterval(intervalRef.current);
+    const rgb = `rgb(${red},${green},${blue})`;
+    setColor(rgb);
   }
 
-  useEffect(() => {  
-    return clearInterval(intervalRef.current); 
+  // Handler Events
+  const onMouseEnterHandler = () => {
+    intervalRef.current = setInterval(generateRandomColor, 500);
+  } 
+  const onMouseLeaveHandler = () => {
+    clearInterval(intervalRef.current)
+  } 
+
+  //
+  useEffect(() => { 
+    // The Interval will clean when the component will unmount
+    return clearInterval(intervalRef.current)
+    // [] => the function will execute 1 time, when the component will unmount
   }, []);
 
-  const squareStyle = {
-    backgroundColor: color,
-  };
 
   return (
-    <div
-      className="elemento"
-      style={squareStyle}
-      onMouseEnter={onMouseEnterHandler}
-      onMouseLeave={onMouseLeaveHandler}
-      onDoubleClick={onDoubleClickHandler}
-    >
-      <h2 >Elementos sesion 10,11,12</h2>
-    </div>
-  );
+    <>
+     <div className="elemento" style={squareStyle} onMouseEnter={onMouseEnterHandler} onMouseLeave={onMouseLeaveHandler} onDoubleClick={onMouseLeaveHandler}>
+        <h1></h1>
+     </div> 
+    </> 
+  )
 };
 
 export default Element;
